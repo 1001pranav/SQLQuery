@@ -2,6 +2,7 @@
 
 ## Data Defination Language 
 Used for defining the few examples are `CREATE`, `DROP`, `ALTER`, `TRUNCATE`, `RENAME`
+
 `CREATE` - Used for creating tables.
 ```SQL
 CREATE TABLE table_name (
@@ -11,11 +12,21 @@ CREATE TABLE table_name (
 );
 ```
 
+`DROP` - Used to delete an entier table
+```SQL
+DROP TABLE table_name
+```
+
 `ALTER` - Used for adding new columns, updating data types and deleting colummns.  
 ```SQL
 ALTER TABLE table_name ADD column_name datatype;
 ALTER TABLE table_name DROP COLUMN column_name;
 ALTER TABLE table_name MODIFY COLUMN column_name datatype(size);
+```
+
+`TRUNCATE` - Delete all data inside the table
+```SQL
+TRUNCATE TABLE table_name;
 ```
 
 `RENAME` - Used for changing name of the existing column with other name.
@@ -60,3 +71,77 @@ FROM
 WHERE 
     condition...
 ```
+
+* `DISTINCT` - To get only unique data
+    ```SQL
+        SELECT 
+            DISTINCT column1, column2, ...
+        FROM 
+            table_name 
+    ```
+* `ORDER BY` - To order perticular data
+    ```SQL
+        SELECT 
+            column1, column2, ...
+        FROM 
+            table_name
+        ORDER BY 
+            column ASC|DESC;
+    ```
+* `GROUP BY and HAVING` - To Group based on condition
+    ```SQL
+        SELECT 
+            column1, column2
+        FROM 
+            table_name
+        GROUP BY 
+            column1, column2;
+    ```
+    ```SQL
+        SELECT 
+            column1, column2
+        FROM 
+            table_name
+        GROUP BY 
+            column1, column2
+        HAVING 
+            condition value;
+    ```
+* `JOIN` - To join multiple tables we are using join operator
+     ```SQL
+        SELECT 
+            table1.column1, table2.column2...
+        FROM table1
+        (INNER | LEFT | RIGHT | FULL) JOIN table2
+            ON table1.matching_column = table2.matching_column;
+    ``` 
+    By `USING`
+    ```SQL
+        SELECT 
+            table1.column1, table2.column2...
+        FROM table1
+        (INNER | LEFT | RIGHT | FULL) JOIN table2
+            USING matching_column;
+    ```
+    * `INNER JOIN` - Gives record matching condititions from both conditions
+    * `LEFT JOIN` or `LEFT OUTER JOIN` - Gives all record from table1 and matching conditions from table2
+    * `RIGHT JOIN` or `RIGHT OUTER JOIN`- Gives all record from table2 and matching conditions from table1
+    * `FULL JOIN`or `FULL OUTER JOIN` - Returns all the record from the table1 and table2
+    * `SELF JOIN` - To Get record of one table using values of same table
+    ```SQL
+        SELECT 
+            a.column_name, b.column_name...
+        FROM 
+            table_name AS a, 
+            table_name AS b
+        WHERE 
+            condition;
+    ```
+    * `CARTESIAN JOIN` - Same as above without where condition
+    ```SQL
+        SELECT 
+            a.column_name, b.column_name...
+        FROM 
+            table_name AS a, 
+            table_name AS b
+    ```
